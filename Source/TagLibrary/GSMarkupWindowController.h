@@ -55,6 +55,8 @@
    * a 'release' message.  Then we destroy the array as well.
    */
   NSArray *_gsMarkupTopLevelObjects;
+
+  BOOL _nibIsLoaded;
 }
 
 @end

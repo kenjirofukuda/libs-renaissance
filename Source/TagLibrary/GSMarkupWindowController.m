@@ -45,11 +45,13 @@
  */
 - (id) initWithWindow: (NSWindow *)window
 {
+  _nibIsLoaded = NO;
   return [super initWithWindow: window];
 }
 
 - (id) initWithWindowNibName: (NSString *)windowNibName
 {
+  _nibIsLoaded = NO;
   ASSIGN (_gsMarkupWindowNibName, windowNibName);
   return [super initWithWindowNibName: windowNibName];
 }
@@ -57,6 +59,7 @@
 - (id) initWithWindowNibName: (NSString *)windowNibName
 		       owner: (id)owner
 {
+  _nibIsLoaded = NO;
   ASSIGN (_gsMarkupWindowNibName, windowNibName);
   return [super initWithWindowNibName: windowNibName  owner: owner];
 }
@@ -64,6 +67,7 @@
 - (id) initWithWindowNibPath: (NSString *)windowNibPath
 		       owner: (id)owner
 {
+  _nibIsLoaded = NO;
   ASSIGN (_gsMarkupWindowNibPath, windowNibPath);
   return [super initWithWindowNibPath: windowNibPath  owner: owner];
 }
@@ -175,6 +179,7 @@
 	  
 	  [self setWindow: window];
 	  [document setWindow: nil];
+    _nibIsLoaded = YES;
 	}
     }
 
@@ -257,6 +262,12 @@
 	    }
 	}
     }
+}
+
+
+- (BOOL) isWindowLoaded
+{
+  return [super isWindowLoaded] || _nibIsLoaded;
 }
 
 @end
